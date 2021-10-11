@@ -1,18 +1,11 @@
 import Proudact from "../Proudact/proudact";
 import "./Proudacts.css";
-function Proudacts() {
+function Proudacts({ list }) {
   return (
     <section className="products">
-      <Proudact />
-      <Proudact />
-      <Proudact />
-      <Proudact />
-      <Proudact />
-      <Proudact />
-      <Proudact />
-      <Proudact />
-      <Proudact />
-      <Proudact />
+      {list.map((item) => (
+        <Proudact im={item.image} titel={item.title} price={item.price} />
+      ))}
     </section>
   );
 }
