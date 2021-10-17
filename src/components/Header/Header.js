@@ -1,19 +1,14 @@
 import "./Header.css";
-function Header() {
+function Header({ list, OnFilter }) {
   return (
     <nav className="product-filter">
       <h1>Jackets </h1>
       <div className="collection-sort">
         <label>Filter by:</label>
-        <select>
-          <option value="/">All Jackets</option>
-          <option value="/">2016</option>
-          <option value="/">jacket</option>
-          <option value="/">Jackets</option>
-          <option value="/">layers</option>
-          <option value="/">Obermeyer</option>
-          <option value="/">Roxy</option>
-          <option value="/">womens</option>
+        <select onChange={(e) => OnFilter(e.target.value)}>
+          {list.map((op) => (
+            <option>{op}</option>
+          ))}
         </select>
       </div>
       <div className="collection-sort">
