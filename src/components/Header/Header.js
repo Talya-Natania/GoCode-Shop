@@ -6,8 +6,9 @@ function Header({ list, OnFilter }) {
       <div className="collection-sort">
         <label>Filter by:</label>
         <select onChange={(e) => OnFilter(e.target.value)}>
+          <option key="All">All</option>
           {list.map((op) => (
-            <option>{op}</option>
+            <option key={op}>{op}</option>
           ))}
         </select>
       </div>

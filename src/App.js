@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Cart from "./components/Cart/Cart";
 import Header from "./components/Header/Header";
 import Proudacts from "./components/Proudacts/proudacts";
-
+import myContext from "./MyContext";
 function App() {
+  let [shopingCart, setCart] = useState([]);
   let [ShopList, setFullList] = useState([]);
   const [FilteredList, setList] = useState(ShopList);
   useEffect(() => {
@@ -20,13 +22,17 @@ function App() {
     (value, index, array) => array.indexOf(value) === index
   );
   const FilterList = (op) => {
-    setList(ShopList.filter((item) => item.category === op));
+    if (op === "All") setList(ShopList);
+    else setList(ShopList.filter((item) => item.category === op));
   };
   return (
-    <div className="App">
-      <Header list={categories} OnFilter={FilterList} />
-      <Proudacts list={FilteredList} />
-    </div>
+    <myContext.Provider value={[shopingCart, setCart]}>
+      <div className="App">
+        <Header list={categories} OnFilter={FilterList} />
+        <Cart />
+        <Proudacts list={FilteredList} />
+      </div>
+    </myContext.Provider>
   );
 }
 
