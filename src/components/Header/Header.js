@@ -1,10 +1,21 @@
+import Box from "@mui/material/Box";
+import { Slider } from "@mui/material";
+import { useState } from "react";
 import "./Header.css";
-function Header({ list, OnFilter }) {
+
+function Header({ list, OnFilter, OnSlider }) {
+  const [value, setValue] = useState([0, 200]);
+  // function valuetext(value) {
+  //   return `${value}$`;
+  // }
+  const handleChange = (event, newValue) => {
+    OnSlider(newValue);
+    setValue(newValue);
+  };
   return (
     <nav className="product-filter">
-      <h1>Jackets </h1>
       <div className="collection-sort">
-        <label>Filter by:</label>
+        <label>Filter by catagory:</label>
         <select onChange={(e) => OnFilter(e.target.value)}>
           <option key="All">All</option>
           {list.map((op) => (
@@ -12,18 +23,18 @@ function Header({ list, OnFilter }) {
           ))}
         </select>
       </div>
-      <div className="collection-sort">
-        <label>Sort by:</label>
-        <select>
-          <option value="/">Featured</option>
-          <option value="/">Best Selling</option>
-          <option value="/">Alphabetically, A-Z</option>
-          <option value="/">Alphabetically, Z-A</option>
-          <option value="/">Price, low to high</option>
-          <option value="/">Price, high to low</option>
-          <option value="/">Date, new to old</option>
-          <option value="/">Date, old to new</option>
-        </select>
+      <div class="collection-sort">
+        <label>filter by price </label>
+        <Box width={150}>
+          <Slider
+            size="small"
+            min={0}
+            max={1000}
+            value={value}
+            onChange={handleChange}
+            valueLabelDisplay="auto"
+          />
+        </Box>
       </div>
     </nav>
   );

@@ -1,5 +1,9 @@
 import "./CartProduct.css";
-function CartProduct({ titel }) {
-  return <div>{titel}</div>;
+function CartProduct({ title, qty }) {
+  return (
+    <div>
+      {title}:{qty}
+    </div>
+  );
 }
 export default CartProduct;

@@ -4,7 +4,12 @@ function Proudacts({ list }) {
   return (
     <section className="products">
       {list.map((item) => (
-        <Proudact im={item.image} titel={item.title} price={item.price} />
+        <Proudact
+          im={item.image}
+          title={item.title}
+          price={item.price}
+          id={item.id}
+        />
       ))}
     </section>
   );
