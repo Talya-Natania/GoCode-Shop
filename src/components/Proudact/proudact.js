@@ -1,13 +1,16 @@
-import MyContext from "../../MyContext";
+import myContext from "../../MyContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import "./Proudact.css";
 function Proudact({ im, title, price, id }) {
-  const [addItem, removeItem] = useContext(MyContext);
+  const [shopingCart, addItem, removeItem] = useContext(myContext);
   return (
     <div className="product-card">
-      <div className="product-image">
-        <img src={im} alt="description" />
-      </div>
+      <Link to={`/product/${id}`}>
+        <div className="product-image">
+          <img src={im} alt="description" />
+        </div>
+      </Link>
       <div className="product-info">
         <h5>{title}</h5>
         <h6>{price}$</h6>
