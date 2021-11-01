@@ -6,7 +6,8 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 import { styled } from "@mui/material/styles";
-// import myContext from "../MyContext";
+import myContext from "../MyContext";
+import { useContext } from "react";
 
 const Img = styled("img")({
   margin: "auto",
@@ -16,6 +17,7 @@ const Img = styled("img")({
 });
 
 function ProductDetails() {
+  const [shopingCart, addItem, removeItem] = useContext(myContext);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   useEffect(() => {
@@ -53,14 +55,14 @@ function ProductDetails() {
             <Grid item>
               <Button
                 variant="outlined"
-                // onClick={() =>
-                //   addItem(
-                //     product?.image,
-                //     product?.title,
-                //     product?.price,
-                //     id
-                //   )
-                // }
+                onClick={() =>
+                  addItem(
+                    product?.image,
+                    product?.title,
+                    product?.price,
+                    product?.id
+                  )
+                }
               >
                 Add To Cart
               </Button>
